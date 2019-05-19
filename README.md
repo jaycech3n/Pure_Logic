@@ -1,0 +1,1 @@
+# THIS <strike>MAY BE</strike> IS PROBABLY A SILLY IDEA!
