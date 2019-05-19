@@ -60,7 +60,7 @@ named_theorems refine
 method logic declares intros elims dests subst refine = (
   assumption | unfold All_def | fold All_def |
   rule intros | erule elims | drule dests | frule dests |
-  simp add: simps | subst subst | subst (asm) subst |
+  subst subst | subst (asm) subst |
   (erule refine; solves \<open>logic\<close>)
 )+
 
@@ -153,7 +153,7 @@ lemma OrE [elim, elims]:
   assumes "PROP P \<or> PROP Q" and "PROP P \<Longrightarrow> PROP R" and "PROP Q \<Longrightarrow> PROP R"
   shows "PROP R"
   apply (rule AllE[where ?P="\<lambda>R. (\<lbrakk>PROP P \<Longrightarrow> PROP R; PROP Q \<Longrightarrow> PROP R\<rbrakk> \<Longrightarrow> PROP R)"])
-  by (fold Or_def) fact+
+  by (unfold All_def, fold Or_def) fact+
 
 lemma NotI [intro, intros]:
   assumes "PROP P \<Longrightarrow> PROP False"

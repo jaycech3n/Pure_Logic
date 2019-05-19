@@ -63,7 +63,7 @@ named_theorems refine
 method logic declares intros elims dests simps subst refine = (
   assumption | unfold All_def | fold All_def |
   rule intros | erule elims | drule dests | frule dests |
-  simp add: simps | subst subst | subst (asm) subst |
+  subst subst | subst (asm) subst |
   (erule refine; solves \<open>logic\<close>)
 )+
 
