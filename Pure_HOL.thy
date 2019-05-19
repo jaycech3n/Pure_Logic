@@ -23,13 +23,16 @@ definition All :: "('a \<Rightarrow> prop) \<Rightarrow> prop" (binder "\<forall
 definition Ex :: "('a \<Rightarrow> prop) \<Rightarrow> prop" (binder "\<exists>" [0] 0)
   where "(\<exists>x. PROP P x) \<equiv> (\<forall>Q :: prop. (\<forall>x. PROP P x \<Longrightarrow> PROP Q) \<Longrightarrow> PROP Q)"
 
-definition And (infix "\<and>" 100)
+definition And (infix "\<and>" 4)
   where "P \<and> Q \<equiv> (PROP P &&& PROP Q)"
 
-definition Or (infix "\<or>" 99)
+definition Ex1 :: "('a \<Rightarrow> prop) \<Rightarrow> prop" (binder "\<exists>!" [0] 0)
+  where "(\<exists>!x. PROP P x) \<equiv> (\<exists>x. PROP P x \<and> (\<forall>y. PROP P y \<Longrightarrow> y = x))"
+
+definition Or (infix "\<or>" 3)
   where "P \<or> Q \<equiv> (\<forall>R. \<lbrakk>PROP P \<Longrightarrow> PROP R; PROP Q \<Longrightarrow> PROP R\<rbrakk> \<Longrightarrow> PROP R)"
 
-definition Not ("(\<not> _)" [101] 900)
+definition Not ("(\<not> _)" [5] 6)
   where "\<not>P \<equiv> (PROP P \<Longrightarrow> PROP False)"
 
 definition Iff (infix "\<Longleftrightarrow>" 0)
